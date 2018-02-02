@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/JarenFanshawe/chatApp.git"
   },
-  "author": "",
+  "author": "jaren",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JarenFanshawe/chatApp/issues"
@@ -18,7 +18,11 @@
   "homepage": "https://github.com/JarenFanshawe/chatApp#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1"
   }
 }
