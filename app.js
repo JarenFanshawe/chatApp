@@ -1,18 +1,21 @@
-const express = require('express'); //include this, just like a pHP inclues
+const express = require('express'); //include this, just like a PHP inclues
 const app = express();
+const io = require('socket.io')(); //active the chat plugin
 
-app.get('/', (req, res)=> {
-	res.sendFile(__dirname + '/index.html');
-});
+//serve static files
+app.use(express.static('public'));
 
-app.get('/contact', (req, res)=> {
-	res.sendFile(__dirname + '/contact.html');
-});
+//add routes
+app.use(require('./routes/index'));
+app.use(require('./routes/contact'));
+app.use(require('./routes/portfolio'));
 
-app.get('/portfolio', (req, res)=> {
-	res.sendFile(__dirname + '/portfolio.html');
-});
-
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
 	console.log('listening on port 3000');
+});
+
+io.attach(server);
+
+io.on('connection', socket => { //=> is the same as function(socket {...})
+	console.log('user is blowing hard');
 });
