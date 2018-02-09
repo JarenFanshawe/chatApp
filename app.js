@@ -18,10 +18,10 @@ io.attach(server);
 
 io.on('connection', socket => { //=> is the same as function(socket {...})
 	console.log('a user connected');
-	io.emit('chat message', { for : 'everyone', message : `${socket.id} has joined`});
+	io.emit('chat message', { for : 'everyone', message : `<span class="bold">${socket.id}</span> has joined`});
 
 	socket.on('disconnect', () => {
 		console.log('a user disconnected');
-		io.emit('disconnect message', `${socket.id} has left`);
+		io.emit('disconnect message', `<span class="bold">${socket.id}</span> has left`);
 	});
 });

@@ -3,18 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Socket IO Chat with Node!</title>
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-	<input type="text" class="nickname" placeholder="What is your nickname?">
+	<h1 class="hide">Chat App</h1>
+
+	<input id="nicknameCon" type="text" class="nickname" placeholder="What is your nickname?">
+
 	<ul id="messages"></ul>
+
 	<form>
 		<input class="message" type="text" id="m" autocomplete="off" placeholder="Type your message here...">
-		<button>send</button>
+		<button><i class="fas fa-location-arrow"></i></button>
 	</form>
+
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/main.js"></script>
+
 </body>
 
 </html>
