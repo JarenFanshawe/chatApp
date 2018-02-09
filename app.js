@@ -20,8 +20,14 @@ io.on('connection', socket => { //=> is the same as function(socket {...})
 	console.log('a user connected');
 	io.emit('chat message', { for : 'everyone', message : `<span class="bold">${socket.id}</span> has joined`});
 
+	//handle messages sent from the client
+	socket.on('chat message', msg => {
+		io.emit('chat message', {for : 'everyone', message : msg });
+	});
+
 	socket.on('disconnect', () => {
 		console.log('a user disconnected');
+
 		io.emit('disconnect message', `<span class="bold">${socket.id}</span> has left`);
 	});
 });
