@@ -16,10 +16,8 @@ Please install ruby, if not already installed;
 
 Please clone the repository from BitBucket:
 ```
-$ git clone https://git@bitbucket.org/JACK_T/ledc.git
+$ git clone https://github.com/JarenFanshawe/chatApp.git
 ```
-
-`$ cd ledc`
 
 Please install NPM and Grunt, if not already installed:
 
