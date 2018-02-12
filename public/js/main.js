@@ -15,7 +15,7 @@
 	function handleSendMessage(e) {
 		e.preventDefault(); // kill form submit
 		nickName = (nickName && nickName.length > 0) ? nickName : 'user';
-		msg = `${nickName} says ${chatMessage.value}`;
+		msg = `<span class="bold>"${nickName}</span> says ${chatMessage.value}`;
 
 		socket.emit('chat message', msg);
 		chatMessage.value = '';
@@ -24,7 +24,7 @@
 
 	function appendMessage(msg) {
 		// will it get passed thru?
-		debugger;
+		//debugger;
 		let newMsg = `<li>${msg.message}</li>`
 		messageList.innerHTML += newMsg;
 	}
@@ -38,4 +38,16 @@
 	chatForm.addEventListener('submit', handleSendMessage, false);
 	socket.addEventListener('chat message', appendMessage, false);
 	socket.addEventListener('disconnect message', appendDMessage, false);
+
+
+
+    addEventListener("keyup", function(event) {
+    	event.preventDefault();
+		var nameCon = document.querySelector('#nicknameCon');
+
+		if(event.keyCode === 13) {
+        	nameCon.style.display = "none";
+    	}
+	});
+
 })();

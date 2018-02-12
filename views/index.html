@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Socket IO Chat with Node!</title>
+
+	<title>Socket IO Chat | Jaren</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<input type="text" class="nickname" placeholder="What is your nickname?">
-	<ul id="messages"></ul>
-	<form>
-		<input class="message" type="text" id="m" autocomplete="off">
-		<button>send</button>
-	</form>
+<h1 class="hide">Jaren's Chat App</h1>
+
+	<div id="nicknameCon">
+		<h2 class="hide">Nickname</h2>
+
+		<div id="nickname">
+			<h3>What is your name?</h3>
+			<input type="text" class="nickname" maxlength="18" placeholder="What is your nickname?" required>
+		</div>
+	</div>
+
+	<div id="chatCon">
+	<h2 class="hide">Messages</h2>
+
+		<ul id="messages"></ul>
+
+		<form>
+			<input class="message" type="text" id="m" autocomplete="off" placeholder="Type your message...">
+			<button><i class="fas fa-location-arrow"></i></button>
+		</form>
+	</div>
+
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/main.min.js"></script>
 </body>

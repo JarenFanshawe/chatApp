@@ -23,7 +23,7 @@ io.attach(server);
 // plug in socket.io
 io.on('connection', function(socket) {
 	console.log('a user has connected');
-	io.emit('chat message', { for: 'everyone', message: `${socket.id} is here to par TAY!!` });
+	io.emit('chat message', { for: 'everyone', message: `<span class="bold">${socket.id}</span> has joined the chat.` });
 
 	// listen for a message, and then send it where it needs to go
 	socket.on('chat message', function(msg) {
@@ -36,7 +36,7 @@ io.on('connection', function(socket) {
 	// listen for disconnet
 	socket.on('disconnect', function() {
 		console.log('a user disconnected');
-		msg = `${socket.id} has left the building!`;
+		msg = `${socket.id} has left the chat.`;
 		io.emit('disconnect message', msg);
 	});
 });
