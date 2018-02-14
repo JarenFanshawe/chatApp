@@ -1,33 +1,42 @@
-const express = require('express'); //include this, just like a PHP inclues
+// initialize our app and tell it to use some plugins from the modules folder
+const express = require('express');
 const app = express();
-const io = require('socket.io')(); //active the chat plugin
+const io = require('socket.io')();
 
-//serve static files
+// some config stuff
+const PORT = process.env.port || 3000;
+
+// tell our app to serve static files from the public folder
 app.use(express.static('public'));
 
-//add routes
 app.use(require('./routes/index'));
 app.use(require('./routes/contact'));
-app.use(require('./routes/portfolio'));
+app.use(require('./routes/users'));
 
-const server = app.listen(3000, () => {
-	console.log('listening on port 3000');
+// tell the app to be served up at this port (same as WAMP or MAMP, just a different port)
+const server = app.listen(3000, function() {
+	console.log('listening on localhost:3000');
 });
 
 io.attach(server);
 
-io.on('connection', socket => { //=> is the same as function(socket {...})
-	console.log('a user connected');
-	io.emit('chat message', { for : 'everyone', message : `<span class="bold">${socket.id}</span> has joined`});
+// plug in socket.io
+io.on('connection', function(socket) {
+	console.log('a user has connected');
+	io.emit('chat message', { for: 'everyone', message: `<span class="bold">${socket.id}</span> has joined the chat.` });
 
-	//handle messages sent from the client
-	socket.on('chat message', msg => {
-		io.emit('chat message', {for : 'everyone', message : msg });
+	// listen for a message, and then send it where it needs to go
+	socket.on('chat message', function(msg) {
+		console.log('message: ', msg);
+
+		// send a message event to all clients
+		io.emit('chat message', { for: 'everyone', message: msg });
 	});
 
-	socket.on('disconnect', () => {
+	// listen for disconnet
+	socket.on('disconnect', function() {
 		console.log('a user disconnected');
-
-		io.emit('disconnect message', `<span class="bold">${socket.id}</span> has left`);
+		msg = `${socket.id} has left the chat.`;
+		io.emit('disconnect message', msg);
 	});
 });
